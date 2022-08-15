@@ -1,0 +1,13 @@
+{
+  "formation": {
+    "web": {
+      "quantity": 0
+    }
+  },
+  "cron": [
+    {
+      "command": "nap",
+      "schedule": "0 10 * * *"
+    }
+  ]
+}
