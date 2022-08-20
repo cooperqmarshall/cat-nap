@@ -31,7 +31,10 @@ def is_duplicate(conn: redis.Redis, url: str) -> bool:
 def should_get_post(conn: redis.Redis, post: Submission) -> bool:
     file_path = urlparse(post.url).path
     file_type = path.splitext(file_path)[1]
-    return file_type in ['.jpg', '.png'] and not post.over_18 and not is_duplicate(conn, post.url)
+    return file_type in ['.jpg', '.png'] \
+        and not post.over_18 \
+        and not is_duplicate(conn, post.url) \
+        and post.link_flair_text == 'Cat Picture'
 
 
 def get_image(url: str) -> bytes:
