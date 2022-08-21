@@ -7,7 +7,7 @@
   "cron": [
     {
       "command": "nap",
-      "schedule": "0 10 * * *"
+      "schedule": "0 17 * * *"
     }
   ]
 }
