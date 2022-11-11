@@ -1,4 +1,3 @@
-from io import BufferedReader
 from praw.models.listing.generator import ListingGenerator
 from praw.models.reddit.submission import Submission
 from os import environ, path

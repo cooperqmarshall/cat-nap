@@ -1,4 +1,3 @@
-from io import BufferedReader
 from smtplib import SMTP
 from email.message import EmailMessage
 from email.utils import make_msgid
