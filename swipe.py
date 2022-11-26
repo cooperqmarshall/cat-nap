@@ -23,7 +23,17 @@ def get_redis_connection() -> redis.Redis:
     return redis.from_url(environ['REDIS_URL'])
 
 
-def is_duplicate(conn: redis.Redis, url: str) -> bool:
+def is_duplicate_url(conn: redis.Redis, url: str) -> bool:
+    '''
+    Checks if a redis database contains the passed url strings as a key.
+
+    :params
+        conn: redis instance
+        url: string representing a url of a reddit post
+
+    :returns
+        True if the `url` param exists as a key in the redis database
+    '''
     return conn.get(url) is not None
 
 
@@ -32,7 +42,7 @@ def should_get_post(conn: redis.Redis, post: Submission) -> bool:
     file_type = path.splitext(file_path)[1]
     return file_type in ['.jpg', '.png'] \
         and not post.over_18 \
-        and not is_duplicate(conn, post.url) \
+        and not is_duplicate_url(conn, post.url) \
         and post.link_flair_text == 'Cat Picture'
 
 
