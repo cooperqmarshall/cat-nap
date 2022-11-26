@@ -2,7 +2,7 @@ from os import environ
 
 from praw import Reddit
 
-from swipe import get_image, get_original_image_url
+from swipe import get_image, get_post
 from send import format_message, send_message
 
 
@@ -14,7 +14,7 @@ def main():
 
     posts = reddit.subreddit(environ['SUBREDDIT']).hot()
 
-    post = get_original_image_url(posts)
+    post = get_post(posts, is_duplicate=False, has_image=True)
     image = get_image(post.url)
     msg = format_message(image, post.url)
     send_message(msg, host='smtp.gmail.com', port=587)
