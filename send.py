@@ -36,8 +36,18 @@ def format_message(img: bytes, img_url: str):
     return msg
 
 
-def send_message(msg: EmailMessage):
-    with SMTP(host='smtp.gmail.com', port=587) as smtp:
+def send_message(msg: EmailMessage, host: str, port: int):
+    '''
+    Sends an EmailMessage from the CAT_NAP_SENDER environment variable using
+    the host and port params for the smtp session. The SENDER_PASSWORD
+    envireonment variable is required to preform the smpt login 
+
+    :params
+        msg: an instance of EmailMessage
+        host: the name of the remote host to which to connect
+        port: the port to which to connect
+    '''
+    with SMTP(host=host, port=port) as smtp:
         smtp.starttls()
-        smtp.login(environ['CAT_NAP_SENDER'], environ['GMAIL_PASSWORD'])
+        smtp.login(environ['CAT_NAP_SENDER'], environ['SENDER_PASSWORD'])
         smtp.send_message(msg)

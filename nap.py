@@ -17,7 +17,7 @@ def main():
     post = get_original_image_url(posts)
     image = get_image(post.url)
     msg = format_message(image, post.url)
-    send_message(msg)
+    send_message(msg, host='smtp.gmail.com', port=587)
 
 
 if __name__ == '__main__':
